@@ -1,18 +1,19 @@
 package com.workpilot_backend.user;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-
+import com.workpilot_backend.auth.JwtService;
 import java.time.LocalDateTime;
-import java.util.Optional;
+
 
 @Service
 public class UserService {
     private final UserRepository userRepository;
-    private final PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-
-    public UserService(UserRepository userRepository){
+    private final PasswordEncoder passwordEncoder ;
+    private final JwtService jwtService;
+    public UserService(UserRepository userRepository, JwtService jwtService, PasswordEncoder passwordEncoder){
         this.userRepository = userRepository;
+        this.jwtService = jwtService;
+        this.passwordEncoder = passwordEncoder;
     }
     public void createUser(UserDTO request){
 
@@ -30,7 +31,7 @@ public class UserService {
         user.setName(request.getName());
         user.setEmail(request.getEmail());
         user.setPasswordHash(hashPassword);
-        user.setRole(Role.ROLE_USER);
+        user.setRole(Role.USER);
         user.setCreatedAt(LocalDateTime.now());
         user.setUpdatedAt(LocalDateTime.now());
 
@@ -44,16 +45,6 @@ public class UserService {
         User currentUser;
     }
     public void deleteUser(){}
-    public String login(UserDTO request){
-        User userLogin = userRepository.findByEmail(request.getEmail())
-                .orElseThrow(() -> new RuntimeException("User not found"));
-
-        if(!passwordEncoder.matches(request.getPassword(), userLogin.getPasswordHash())){
-             throw new RuntimeException("Invalid Password ");
-         }
-
-        return "200";
-    }
 
     public boolean validateEmail(String email){
         return email.contains("@");
