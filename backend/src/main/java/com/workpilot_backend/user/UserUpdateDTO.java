@@ -37,7 +37,6 @@ public class UserUpdateDTO {
     public String getPassword(){
         return this.password;
     }
-
     public void setEmail(String email) {
         this.email = email;
     }

@@ -7,12 +7,6 @@ public class UserResponseDTO {
     public Role role;
 
     public UserResponseDTO(){}
-    public UserResponseDTO(Long id, String name, String email, Role role){
-        this.id = id;
-        this.name = name;
-        this.email = email;
-        this.role = role;
-    }
 
     public void setName(String name){
         this.name = name;

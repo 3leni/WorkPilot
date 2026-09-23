@@ -1,0 +1,55 @@
+package com.workpilot_backend.project;
+
+import com.workpilot_backend.user.User;
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "project_member")
+public class ProjectMember {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    @ManyToOne
+    @JoinColumn(name = "project_id")
+    private Project project;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
+    @Enumerated(EnumType.STRING)
+    private Role role;
+
+    public ProjectMember(){};
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Project getProject() {
+        return project;
+    }
+
+    public void setProject(Project project) {
+        this.project = project;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+}

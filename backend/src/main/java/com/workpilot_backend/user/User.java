@@ -1,7 +1,9 @@
 package com.workpilot_backend.user;
+import com.workpilot_backend.project.ProjectMember;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 
 @Entity
@@ -17,6 +19,8 @@ public class User{
     private String passwordHash;
     private LocalDateTime  createdAt;
     private LocalDateTime updatedAt;
+    @OneToMany(mappedBy = "user")
+    private List<ProjectMember> ProjectMemberships;
 
     public User(){}
 
@@ -74,5 +78,13 @@ public class User{
 
     public LocalDateTime getUpdatedAt() {
         return updatedAt;
+    }
+
+    public List<ProjectMember> getProjectMemberships() {
+        return ProjectMemberships;
+    }
+
+    public void setProjectMemberships(List<ProjectMember> projectMemberships) {
+        ProjectMemberships = projectMemberships;
     }
 }
