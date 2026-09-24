@@ -89,6 +89,7 @@ public class UserService {
 
         return dto;
     }
+
     public List<UserResponseDTO> getAllUsers(){
         List<User> users = userRepository.findAll();
 
