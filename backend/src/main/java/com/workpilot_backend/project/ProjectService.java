@@ -46,7 +46,6 @@ public class ProjectService {
         dto.setId(project.getId());
         dto.setName(project.getName());
         dto.setDescription(project.getDescription());
-
         dto.setMembers(projectMemberService.toMemberDTOS(project));
 
         return dto;
@@ -54,8 +53,7 @@ public class ProjectService {
 
     public List<ProjectResponseDTO> getAllProjects(){
         User user = authService.getAuthenticatedUser();
-        List<Project> projects = projectRepository.findByMembersContaining(user);
-
+        List<Project> projects = projectRepository.findByMembers_User(user);
         return projects.stream()
         .map(this::toResponseDTO)
                 .toList();

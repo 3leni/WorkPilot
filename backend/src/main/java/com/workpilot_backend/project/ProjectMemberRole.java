@@ -1,7 +1,7 @@
 package com.workpilot_backend.project;
 
-public enum Role {
+public enum ProjectMemberRole {
     ADMIN,
-    MEMBRER,
+    MEMBER,
     OWNER
 }

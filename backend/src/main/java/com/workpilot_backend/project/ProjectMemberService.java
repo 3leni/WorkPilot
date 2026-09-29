@@ -32,7 +32,7 @@ public class ProjectMemberService {
     }
 
     private ProjectMember createMember(Project project, ProjectMemberDTO memberDTO){
-        User user = userRepository.findById(memberDTO.getId())
+        User user = userRepository.findById(memberDTO.getUserId())
                 .orElseThrow(() -> new UserNotFoundException("User not found"));
 
         ProjectMember projectMember = new ProjectMember();
@@ -46,7 +46,7 @@ public class ProjectMemberService {
     private ProjectMemberDTO toDTO(ProjectMember projectMember){
         ProjectMemberDTO dto = new ProjectMemberDTO();
 
-        dto.setId(projectMember.getUser().getId());
+        dto.setUserId(projectMember.getUser().getId());
         dto.setRole(projectMember.getRole());
 
         return dto;
@@ -66,7 +66,7 @@ public class ProjectMemberService {
         ProjectMember member = projectMemberRepository.findByProjectAndUser(project, user)
                 .orElseThrow(() -> new UnauthorizedException("You are not a member of this project"));
 
-        if (member.getRole() != Role.ADMIN) {
+        if (member.getRole() != ProjectMemberRole.ADMIN) {
             throw new UnauthorizedException(
                     "Only the project ADMIN can delete/update the project"
             );

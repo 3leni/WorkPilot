@@ -4,7 +4,7 @@ import com.workpilot_backend.user.User;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "project_member")
+@Table(name = "project_members")
 public class ProjectMember {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,7 +17,8 @@ public class ProjectMember {
     @JoinColumn(name = "user_id")
     private User user;
     @Enumerated(EnumType.STRING)
-    private Role role;
+    @Column(name = "role")
+    private ProjectMemberRole projectMemberRole;
 
     public ProjectMember(){};
 
@@ -45,11 +46,11 @@ public class ProjectMember {
         this.user = user;
     }
 
-    public void setRole(Role role) {
-        this.role = role;
+    public void setRole(ProjectMemberRole projectMemberRole) {
+        this.projectMemberRole = projectMemberRole;
     }
 
-    public Role getRole() {
-        return role;
+    public ProjectMemberRole getRole() {
+        return projectMemberRole;
     }
 }

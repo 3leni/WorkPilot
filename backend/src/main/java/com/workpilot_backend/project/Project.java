@@ -11,7 +11,9 @@ public class Project {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(name = "name_project")
     private String name;
+    @Column(name = "description_project")
     private String description;
     private LocalDateTime created_at;
     private LocalDateTime updated_at;

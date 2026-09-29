@@ -2,26 +2,25 @@ package com.workpilot_backend.project;
 
 public class ProjectMemberDTO {
 
-    private Long id;
-    private Role role;
+    private Long userId;
+    private ProjectMemberRole projectMemberRole;
 
-    public ProjectMember DTO(){
-        return null;
-    };
-
-    public Role getRole() {
-        return role;
+    public ProjectMemberDTO() {
     }
 
-    public void setRole(Role role) {
-        this.role = role;
+    public Long getUserId() {
+        return userId;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 
-    public Long getId() {
-        return id;
+    public ProjectMemberRole getRole() {
+        return projectMemberRole;
+    }
+
+    public void setRole(ProjectMemberRole projectMemberRole) {
+        this.projectMemberRole = projectMemberRole;
     }
 }

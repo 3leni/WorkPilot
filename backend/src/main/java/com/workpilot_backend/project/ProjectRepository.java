@@ -10,5 +10,5 @@ import java.util.Optional;
 public interface ProjectRepository extends JpaRepository<Project, Long> {
     Optional<Project> findByName(String name);
     boolean existsByNameAndIdNot(String name , Long id);
-    List<Project> findByMembersContaining(User user);
+    List<Project> findByMembers_User(User user);
 }
